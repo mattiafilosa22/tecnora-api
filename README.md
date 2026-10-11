@@ -52,6 +52,8 @@ php artisan test
 
 In locale i test usano SQLite in memoria (`phpunit.xml`, richiede `pdo_sqlite`); in CI girano su PostgreSQL 16 (`.github/workflows/ci.yml`).
 
+> Le `<env>` di `phpunit.xml` non hanno `force="true"`: se `DB_CONNECTION`/`DB_*` sono già esportate nell'ambiente della shell, vincono loro (è così che la CI usa pgsql). Per forzare SQLite in locale: `DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test`.
+
 ## Stile
 
 ```bash

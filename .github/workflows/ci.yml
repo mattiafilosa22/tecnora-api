@@ -65,3 +65,18 @@ jobs:
       - run: php artisan migrate --force
 
       - run: php artisan test
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: docker compose up -d --build --wait --wait-timeout 300
+
+      - run: curl -fsS http://localhost:8000/api/health | grep -F '"db":true'
+
+      - if: failure()
+        run: docker compose logs
+
+      - if: always()
+        run: docker compose down -v

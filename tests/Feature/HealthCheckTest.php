@@ -17,10 +17,11 @@ class HealthCheckTest extends TestCase
     public function test_health_reports_db_false_when_database_is_unreachable(): void
     {
         config([
-            'database.default' => 'sqlite',
-            'database.connections.sqlite.database' => '/nonexistent/tecnora.sqlite',
+            'database.default' => 'pgsql',
+            'database.connections.pgsql.host' => '127.0.0.1',
+            'database.connections.pgsql.port' => 1,
         ]);
-        DB::purge('sqlite');
+        DB::purge('pgsql');
 
         $this->getJson('/api/health')
             ->assertOk()
