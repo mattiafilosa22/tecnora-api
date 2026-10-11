@@ -1,0 +1,30 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cross-Origin Resource Sharing (CORS) Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The frontend origin is read from FRONTEND_URL.
+    |
+    */
+
+    'paths' => ['api/*'],
+
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:5173')],
+
+    'allowed_origins_patterns' => [],
+
+    'allowed_headers' => ['*'],
+
+    'exposed_headers' => [],
+
+    'max_age' => 0,
+
+    'supports_credentials' => false,
+
+];
